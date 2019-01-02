@@ -146,6 +146,7 @@ void SysTick_Handler(void)
   * @param  None
   * @retval None
   */
+extern __IO uint32_t timecnt;
 void RTC_IRQHandler(void)
 {
 	  if (RTC_GetITStatus(RTC_IT_SEC) != RESET)
@@ -155,7 +156,7 @@ void RTC_IRQHandler(void)
 	
 	    /* Enable time update */
 	    TimeDisplay = 1;
-	
+	timecnt++;
 	    /* Wait until last write operation on RTC registers has finished */
 	    RTC_WaitForLastTask();
 	  }

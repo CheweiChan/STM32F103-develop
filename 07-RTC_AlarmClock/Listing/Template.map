@@ -23,16 +23,16 @@ Section Cross References
     stm32f10x_tim.o(.text) refers to stm32f10x_rcc.o(.text) for RCC_APB2PeriphResetCmd
     stm32f10x_usart.o(.text) refers to stm32f10x_rcc.o(.text) for RCC_APB2PeriphResetCmd
     stm32f10x_wwdg.o(.text) refers to stm32f10x_rcc.o(.text) for RCC_APB1PeriphResetCmd
+    main.o(.text) refers to _scanf_int.o(.text) for _scanf_int
     main.o(.text) refers to bsp_usart.o(.text) for USART_Config
     main.o(.text) refers to bsp_key.o(.text) for Key_GPIO_Config
     main.o(.text) refers to bsp_beep.o(.text) for BEEP_GPIO_Config
     main.o(.text) refers to bsp_rtc.o(.text) for RTC_NVIC_Config
-    main.o(.text) refers to bsp_date.o(.text) for mktimev
-    main.o(.text) refers to stm32f10x_rtc.o(.text) for RTC_SetAlarm
-    main.o(.text) refers to stm32f10x_bkp.o(.text) for BKP_WriteBackupRegister
+    main.o(.text) refers to printf3.o(i.__0printf$3) for __2printf
+    main.o(.text) refers to __0scanf.o(.text) for __0scanf
     main.o(.text) refers to stm32f10x_gpio.o(.text) for GPIO_SetBits
-    main.o(.text) refers to main.o(.data) for systmtime
     main.o(.text) refers to bsp_rtc.o(.data) for TimeDisplay
+    main.o(.text) refers to main.o(.data) for timeup
     stm32f10x_it.o(.text) refers to stm32f10x_rtc.o(.text) for RTC_GetITStatus
     stm32f10x_it.o(.text) refers to bsp_rtc.o(.data) for TimeDisplay
     bsp_calendar.o(.text) refers to bsp_calendar.o(.constdata) for year_code
@@ -45,11 +45,11 @@ Section Cross References
     bsp_rtc.o(.text) refers to misc.o(.text) for NVIC_PriorityGroupConfig
     bsp_rtc.o(.text) refers to stm32f10x_rcc.o(.text) for RCC_APB1PeriphClockCmd
     bsp_rtc.o(.text) refers to stm32f10x_pwr.o(.text) for PWR_BackupAccessCmd
-    bsp_rtc.o(.text) refers to stm32f10x_bkp.o(.text) for BKP_DeInit
     bsp_rtc.o(.text) refers to stm32f10x_rtc.o(.text) for RTC_WaitForSynchro
-    bsp_rtc.o(.text) refers to bsp_date.o(.text) for GregorianDay
+    bsp_rtc.o(.text) refers to stm32f10x_bkp.o(.text) for BKP_DeInit
     bsp_rtc.o(.text) refers to printf3.o(i.__0printf$3) for __2printf
     bsp_rtc.o(.text) refers to __0scanf.o(.text) for __0scanf
+    bsp_rtc.o(.text) refers to bsp_date.o(.text) for to_tm
     bsp_rtc.o(.text) refers to bsp_calendar.o(.text) for GetChinaCalendar
     bsp_rtc.o(.text) refers to bsp_rtc.o(.conststring) for .conststring
     bsp_rtc.o(.text) refers to bsp_rtc.o(.data) for FirstDisplay
@@ -494,57 +494,57 @@ Image Symbol Table
     .text                                    0x08000cb4   Section        0  stm32f10x_rtc.o(.text)
     .text                                    0x08000dfc   Section        0  stm32f10x_usart.o(.text)
     .text                                    0x08001204   Section        0  main.o(.text)
-    .text                                    0x080012b4   Section        0  stm32f10x_it.o(.text)
-    .text                                    0x08001308   Section        0  bsp_calendar.o(.text)
-    .text                                    0x0800198c   Section        0  bsp_date.o(.text)
-    .text                                    0x08001b68   Section        0  bsp_rtc.o(.text)
-    .text                                    0x0800213c   Section        0  bsp_usart.o(.text)
-    .text                                    0x080021f8   Section        0  bsp_key.o(.text)
-    .text                                    0x08002260   Section        0  bsp_beep.o(.text)
-    .text                                    0x08002294   Section        0  memcpya.o(.text)
-    .text                                    0x080022b8   Section        0  __0scanf.o(.text)
-    .text                                    0x080022d8   Section        0  _scanf_int.o(.text)
-    .text                                    0x08002424   Section        0  uidiv.o(.text)
-    .text                                    0x08002450   Section        0  _chval.o(.text)
-    .text                                    0x0800246c   Section        0  scanf_char_file.o(.text)
-    .text                                    0x08002480   Section       36  init.o(.text)
-    .text                                    0x080024a4   Section        0  fgetc_b.o(.text)
-    .text                                    0x080024d0   Section        0  scanf_char.o(.text)
-    _scanf_char_input                        0x080024d1   Thumb Code    12  scanf_char.o(.text)
-    .text                                    0x080024f8   Section        0  isspace_c.o(.text)
-    .text                                    0x080024f8   Section        0  semi.o(.text)
-    .text                                    0x08002504   Section        0  _scanf.o(.text)
-    .text                                    0x08002830   Section        0  iusesemig.o(.text)
-    .text                                    0x08002830   Section        0  ctype_c.o(.text)
-    .text                                    0x08002858   Section        0  __dczerorl2.o(.text)
-    i.__0printf$3                            0x080028b0   Section        0  printf3.o(i.__0printf$3)
-    i.__scatterload_copy                     0x080028d0   Section       14  handlers.o(i.__scatterload_copy)
-    i.__scatterload_null                     0x080028de   Section        2  handlers.o(i.__scatterload_null)
-    i.__scatterload_zeroinit                 0x080028e0   Section       14  handlers.o(i.__scatterload_zeroinit)
-    i._printf_core                           0x080028f0   Section        0  printf3.o(i._printf_core)
-    _printf_core                             0x080028f1   Thumb Code   436  printf3.o(i._printf_core)
-    .constdata                               0x08002aa8   Section      814  bsp_calendar.o(.constdata)
-    MonthDayMax                              0x08002dca   Data          12  bsp_calendar.o(.constdata)
-    .constdata                               0x08002dd8   Section       48  bsp_date.o(.constdata)
-    .constdata                               0x08002e08   Section       64  ctype_c.o(.constdata)
-    .conststring                             0x08002e48   Section      335  bsp_calendar.o(.conststring)
-    .conststring                             0x08002f98   Section      691  bsp_rtc.o(.conststring)
+    .text                                    0x08001300   Section        0  stm32f10x_it.o(.text)
+    .text                                    0x08001360   Section        0  bsp_calendar.o(.text)
+    .text                                    0x080019e4   Section        0  bsp_date.o(.text)
+    .text                                    0x08001bc0   Section        0  bsp_rtc.o(.text)
+    .text                                    0x080020a0   Section        0  bsp_usart.o(.text)
+    .text                                    0x0800215c   Section        0  bsp_key.o(.text)
+    .text                                    0x080021c4   Section        0  bsp_beep.o(.text)
+    .text                                    0x080021f8   Section        0  memcpya.o(.text)
+    .text                                    0x0800221c   Section        0  __0scanf.o(.text)
+    .text                                    0x0800223c   Section        0  _scanf_int.o(.text)
+    .text                                    0x08002388   Section        0  uidiv.o(.text)
+    .text                                    0x080023b4   Section        0  _chval.o(.text)
+    .text                                    0x080023d0   Section        0  scanf_char_file.o(.text)
+    .text                                    0x080023e4   Section       36  init.o(.text)
+    .text                                    0x08002408   Section        0  fgetc_b.o(.text)
+    .text                                    0x08002434   Section        0  scanf_char.o(.text)
+    _scanf_char_input                        0x08002435   Thumb Code    12  scanf_char.o(.text)
+    .text                                    0x0800245c   Section        0  isspace_c.o(.text)
+    .text                                    0x0800245c   Section        0  semi.o(.text)
+    .text                                    0x08002468   Section        0  _scanf.o(.text)
+    .text                                    0x08002794   Section        0  iusesemig.o(.text)
+    .text                                    0x08002794   Section        0  ctype_c.o(.text)
+    .text                                    0x080027bc   Section        0  __dczerorl2.o(.text)
+    i.__0printf$3                            0x08002814   Section        0  printf3.o(i.__0printf$3)
+    i.__scatterload_copy                     0x08002834   Section       14  handlers.o(i.__scatterload_copy)
+    i.__scatterload_null                     0x08002842   Section        2  handlers.o(i.__scatterload_null)
+    i.__scatterload_zeroinit                 0x08002844   Section       14  handlers.o(i.__scatterload_zeroinit)
+    i._printf_core                           0x08002854   Section        0  printf3.o(i._printf_core)
+    _printf_core                             0x08002855   Thumb Code   436  printf3.o(i._printf_core)
+    .constdata                               0x08002a0c   Section      814  bsp_calendar.o(.constdata)
+    MonthDayMax                              0x08002d2e   Data          12  bsp_calendar.o(.constdata)
+    .constdata                               0x08002d3c   Section       48  bsp_date.o(.constdata)
+    .constdata                               0x08002d6c   Section       64  ctype_c.o(.constdata)
+    .conststring                             0x08002dac   Section      335  bsp_calendar.o(.conststring)
+    .conststring                             0x08002efc   Section      691  bsp_rtc.o(.conststring)
     .data                                    0x20000000   Section       20  system_stm32f10x.o(.data)
     .data                                    0x20000014   Section       20  stm32f10x_rcc.o(.data)
     APBAHBPrescTable                         0x20000014   Data          16  stm32f10x_rcc.o(.data)
     ADCPrescTable                            0x20000024   Data           4  stm32f10x_rcc.o(.data)
-    .data                                    0x20000028   Section       56  main.o(.data)
-    .data                                    0x20000060   Section      248  bsp_calendar.o(.data)
-    .data                                    0x20000158   Section       48  bsp_date.o(.data)
-    month_days                               0x20000158   Data          48  bsp_date.o(.data)
-    .data                                    0x20000188   Section      164  bsp_rtc.o(.data)
-    FirstDisplay                             0x20000228   Data           4  bsp_rtc.o(.data)
-    .data                                    0x2000022c   Section        4  stdin.o(.data)
-    .data                                    0x20000230   Section        4  stdout.o(.data)
-    .data                                    0x20000234   Section        3  fgetc_b.o(.data)
-    ungetc_sp                                0x20000234   Data           1  fgetc_b.o(.data)
-    ungetc_stack                             0x20000235   Data           2  fgetc_b.o(.data)
-    STACK                                    0x20000238   Section     1024  startup_stm32f10x_hd.o(STACK)
+    .data                                    0x20000028   Section        4  main.o(.data)
+    .data                                    0x2000002c   Section      248  bsp_calendar.o(.data)
+    .data                                    0x20000124   Section       48  bsp_date.o(.data)
+    month_days                               0x20000124   Data          48  bsp_date.o(.data)
+    .data                                    0x20000154   Section      168  bsp_rtc.o(.data)
+    FirstDisplay                             0x200001f8   Data           4  bsp_rtc.o(.data)
+    .data                                    0x200001fc   Section        4  stdin.o(.data)
+    .data                                    0x20000200   Section        4  stdout.o(.data)
+    .data                                    0x20000204   Section        3  fgetc_b.o(.data)
+    ungetc_sp                                0x20000204   Data           1  fgetc_b.o(.data)
+    ungetc_stack                             0x20000205   Data           2  fgetc_b.o(.data)
+    STACK                                    0x20000208   Section     1024  startup_stm32f10x_hd.o(STACK)
 
     Global Symbols
 
@@ -793,94 +793,94 @@ Image Symbol Table
     USART_ClearFlag                          0x0800116b   Thumb Code    18  stm32f10x_usart.o(.text)
     USART_GetITStatus                        0x0800117d   Thumb Code    84  stm32f10x_usart.o(.text)
     USART_ClearITPendingBit                  0x080011d1   Thumb Code    52  stm32f10x_usart.o(.text)
-    main                                     0x08001205   Thumb Code   152  main.o(.text)
-    NMI_Handler                              0x080012b5   Thumb Code     2  stm32f10x_it.o(.text)
-    HardFault_Handler                        0x080012b7   Thumb Code     4  stm32f10x_it.o(.text)
-    MemManage_Handler                        0x080012bb   Thumb Code     4  stm32f10x_it.o(.text)
-    BusFault_Handler                         0x080012bf   Thumb Code     4  stm32f10x_it.o(.text)
-    UsageFault_Handler                       0x080012c3   Thumb Code     4  stm32f10x_it.o(.text)
-    SVC_Handler                              0x080012c7   Thumb Code     2  stm32f10x_it.o(.text)
-    DebugMon_Handler                         0x080012c9   Thumb Code     2  stm32f10x_it.o(.text)
-    PendSV_Handler                           0x080012cb   Thumb Code     2  stm32f10x_it.o(.text)
-    SysTick_Handler                          0x080012cd   Thumb Code     2  stm32f10x_it.o(.text)
-    RTC_IRQHandler                           0x080012cf   Thumb Code    48  stm32f10x_it.o(.text)
-    GetMoonDay                               0x08001309   Thumb Code   282  bsp_calendar.o(.text)
-    GetChinaCalendar                         0x08001423   Thumb Code   506  bsp_calendar.o(.text)
-    GetSkyEarth                              0x0800161d   Thumb Code    56  bsp_calendar.o(.text)
-    StrCopy                                  0x08001655   Thumb Code    24  bsp_calendar.o(.text)
-    GetChinaCalendarStr                      0x0800166d   Thumb Code   296  bsp_calendar.o(.text)
-    GetJieQi                                 0x08001795   Thumb Code   158  bsp_calendar.o(.text)
-    GetJieQiStr                              0x08001833   Thumb Code   300  bsp_calendar.o(.text)
-    GregorianDay                             0x0800198d   Thumb Code   146  bsp_date.o(.text)
-    mktimev                                  0x08001a1f   Thumb Code   120  bsp_date.o(.text)
-    to_tm                                    0x08001a97   Thumb Code   194  bsp_date.o(.text)
-    RTC_NVIC_Config                          0x08001b69   Thumb Code    42  bsp_rtc.o(.text)
-    RTC_Configuration                        0x08001b93   Thumb Code    88  bsp_rtc.o(.text)
-    Time_Adjust                              0x08001beb   Thumb Code    40  bsp_rtc.o(.text)
-    RTC_CheckAndConfig                       0x08001c13   Thumb Code   140  bsp_rtc.o(.text)
-    Time_Regulate_Get                        0x08001c9f   Thumb Code   452  bsp_rtc.o(.text)
-    Time_Display                             0x08001e63   Thumb Code   196  bsp_rtc.o(.text)
-    Time_Show                                0x08001f27   Thumb Code    32  bsp_rtc.o(.text)
-    USART_Config                             0x0800213d   Thumb Code   120  bsp_usart.o(.text)
-    fputc                                    0x080021b5   Thumb Code    32  bsp_usart.o(.text)
-    fgetc                                    0x080021d5   Thumb Code    26  bsp_usart.o(.text)
-    Key_GPIO_Config                          0x080021f9   Thumb Code    54  bsp_key.o(.text)
-    Key_Scan                                 0x0800222f   Thumb Code    40  bsp_key.o(.text)
-    BEEP_GPIO_Config                         0x08002261   Thumb Code    46  bsp_beep.o(.text)
-    __aeabi_memcpy                           0x08002295   Thumb Code    36  memcpya.o(.text)
-    __aeabi_memcpy4                          0x08002295   Thumb Code     0  memcpya.o(.text)
-    __aeabi_memcpy8                          0x08002295   Thumb Code     0  memcpya.o(.text)
-    __0scanf                                 0x080022b9   Thumb Code    26  __0scanf.o(.text)
-    _scanf_int                               0x080022d9   Thumb Code   332  _scanf_int.o(.text)
-    __aeabi_uidiv                            0x08002425   Thumb Code     0  uidiv.o(.text)
-    __aeabi_uidivmod                         0x08002425   Thumb Code    44  uidiv.o(.text)
-    _chval                                   0x08002451   Thumb Code    28  _chval.o(.text)
-    __vfscanf_char_file                      0x0800246d   Thumb Code    12  scanf_char_file.o(.text)
-    __scatterload                            0x08002481   Thumb Code    28  init.o(.text)
-    __scatterload_rt2                        0x08002481   Thumb Code     0  init.o(.text)
-    _fgetc$bs                                0x080024a5   Thumb Code    28  fgetc_b.o(.text)
-    __backspace                              0x080024c1   Thumb Code    10  fgetc_b.o(.text)
-    __vfscanf_char                           0x080024dd   Thumb Code    20  scanf_char.o(.text)
-    __semihosting_library_function           0x080024f9   Thumb Code     0  semi.o(.text)
-    isspace                                  0x080024f9   Thumb Code    10  isspace_c.o(.text)
-    __vfscanf                                0x08002505   Thumb Code   808  _scanf.o(.text)
-    __I$use$semihosting$fgetc                0x08002831   Thumb Code     0  iusesemig.o(.text)
-    __ctype_lookup                           0x08002831   Thumb Code    34  ctype_c.o(.text)
-    __decompress                             0x08002859   Thumb Code     0  __dczerorl2.o(.text)
-    __decompress1                            0x08002859   Thumb Code    86  __dczerorl2.o(.text)
-    __0printf$3                              0x080028b1   Thumb Code    22  printf3.o(i.__0printf$3)
-    __1printf$3                              0x080028b1   Thumb Code     0  printf3.o(i.__0printf$3)
-    __2printf                                0x080028b1   Thumb Code     0  printf3.o(i.__0printf$3)
-    __scatterload_copy                       0x080028d1   Thumb Code    14  handlers.o(i.__scatterload_copy)
-    __scatterload_null                       0x080028df   Thumb Code     2  handlers.o(i.__scatterload_null)
-    __scatterload_zeroinit                   0x080028e1   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
-    year_code                                0x08002aa8   Data         597  bsp_calendar.o(.constdata)
-    YearMonthBit                             0x08002cfd   Data         153  bsp_calendar.o(.constdata)
-    days                                     0x08002d96   Data          24  bsp_calendar.o(.constdata)
-    day_code1                                0x08002dae   Data           9  bsp_calendar.o(.constdata)
-    day_code2                                0x08002db8   Data           6  bsp_calendar.o(.constdata)
-    table_week                               0x08002dbe   Data          12  bsp_calendar.o(.constdata)
-    __ctype_categories                       0x08002e08   Data          64  ctype_c.o(.constdata)
-    Region$$Table$$Base                      0x0800324c   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x0800326c   Number         0  anon$$obj.o(Region$$Table)
+    main                                     0x08001205   Thumb Code   168  main.o(.text)
+    NMI_Handler                              0x08001301   Thumb Code     2  stm32f10x_it.o(.text)
+    HardFault_Handler                        0x08001303   Thumb Code     4  stm32f10x_it.o(.text)
+    MemManage_Handler                        0x08001307   Thumb Code     4  stm32f10x_it.o(.text)
+    BusFault_Handler                         0x0800130b   Thumb Code     4  stm32f10x_it.o(.text)
+    UsageFault_Handler                       0x0800130f   Thumb Code     4  stm32f10x_it.o(.text)
+    SVC_Handler                              0x08001313   Thumb Code     2  stm32f10x_it.o(.text)
+    DebugMon_Handler                         0x08001315   Thumb Code     2  stm32f10x_it.o(.text)
+    PendSV_Handler                           0x08001317   Thumb Code     2  stm32f10x_it.o(.text)
+    SysTick_Handler                          0x08001319   Thumb Code     2  stm32f10x_it.o(.text)
+    RTC_IRQHandler                           0x0800131b   Thumb Code    58  stm32f10x_it.o(.text)
+    GetMoonDay                               0x08001361   Thumb Code   282  bsp_calendar.o(.text)
+    GetChinaCalendar                         0x0800147b   Thumb Code   506  bsp_calendar.o(.text)
+    GetSkyEarth                              0x08001675   Thumb Code    56  bsp_calendar.o(.text)
+    StrCopy                                  0x080016ad   Thumb Code    24  bsp_calendar.o(.text)
+    GetChinaCalendarStr                      0x080016c5   Thumb Code   296  bsp_calendar.o(.text)
+    GetJieQi                                 0x080017ed   Thumb Code   158  bsp_calendar.o(.text)
+    GetJieQiStr                              0x0800188b   Thumb Code   300  bsp_calendar.o(.text)
+    GregorianDay                             0x080019e5   Thumb Code   146  bsp_date.o(.text)
+    mktimev                                  0x08001a77   Thumb Code   120  bsp_date.o(.text)
+    to_tm                                    0x08001aef   Thumb Code   194  bsp_date.o(.text)
+    RTC_NVIC_Config                          0x08001bc1   Thumb Code    42  bsp_rtc.o(.text)
+    RTC_CheckAndConfig                       0x08001beb   Thumb Code    58  bsp_rtc.o(.text)
+    RTC_Configuration                        0x08001c25   Thumb Code    88  bsp_rtc.o(.text)
+    Time_Regulate_Get                        0x08001c7d   Thumb Code   452  bsp_rtc.o(.text)
+    Time_Display                             0x08001e41   Thumb Code   196  bsp_rtc.o(.text)
+    Time_Show                                0x08001f05   Thumb Code    32  bsp_rtc.o(.text)
+    Time_Adjust                              0x08001f25   Thumb Code    40  bsp_rtc.o(.text)
+    USART_Config                             0x080020a1   Thumb Code   120  bsp_usart.o(.text)
+    fputc                                    0x08002119   Thumb Code    32  bsp_usart.o(.text)
+    fgetc                                    0x08002139   Thumb Code    26  bsp_usart.o(.text)
+    Key_GPIO_Config                          0x0800215d   Thumb Code    54  bsp_key.o(.text)
+    Key_Scan                                 0x08002193   Thumb Code    40  bsp_key.o(.text)
+    BEEP_GPIO_Config                         0x080021c5   Thumb Code    46  bsp_beep.o(.text)
+    __aeabi_memcpy                           0x080021f9   Thumb Code    36  memcpya.o(.text)
+    __aeabi_memcpy4                          0x080021f9   Thumb Code     0  memcpya.o(.text)
+    __aeabi_memcpy8                          0x080021f9   Thumb Code     0  memcpya.o(.text)
+    __0scanf                                 0x0800221d   Thumb Code    26  __0scanf.o(.text)
+    _scanf_int                               0x0800223d   Thumb Code   332  _scanf_int.o(.text)
+    __aeabi_uidiv                            0x08002389   Thumb Code     0  uidiv.o(.text)
+    __aeabi_uidivmod                         0x08002389   Thumb Code    44  uidiv.o(.text)
+    _chval                                   0x080023b5   Thumb Code    28  _chval.o(.text)
+    __vfscanf_char_file                      0x080023d1   Thumb Code    12  scanf_char_file.o(.text)
+    __scatterload                            0x080023e5   Thumb Code    28  init.o(.text)
+    __scatterload_rt2                        0x080023e5   Thumb Code     0  init.o(.text)
+    _fgetc$bs                                0x08002409   Thumb Code    28  fgetc_b.o(.text)
+    __backspace                              0x08002425   Thumb Code    10  fgetc_b.o(.text)
+    __vfscanf_char                           0x08002441   Thumb Code    20  scanf_char.o(.text)
+    __semihosting_library_function           0x0800245d   Thumb Code     0  semi.o(.text)
+    isspace                                  0x0800245d   Thumb Code    10  isspace_c.o(.text)
+    __vfscanf                                0x08002469   Thumb Code   808  _scanf.o(.text)
+    __I$use$semihosting$fgetc                0x08002795   Thumb Code     0  iusesemig.o(.text)
+    __ctype_lookup                           0x08002795   Thumb Code    34  ctype_c.o(.text)
+    __decompress                             0x080027bd   Thumb Code     0  __dczerorl2.o(.text)
+    __decompress1                            0x080027bd   Thumb Code    86  __dczerorl2.o(.text)
+    __0printf$3                              0x08002815   Thumb Code    22  printf3.o(i.__0printf$3)
+    __1printf$3                              0x08002815   Thumb Code     0  printf3.o(i.__0printf$3)
+    __2printf                                0x08002815   Thumb Code     0  printf3.o(i.__0printf$3)
+    __scatterload_copy                       0x08002835   Thumb Code    14  handlers.o(i.__scatterload_copy)
+    __scatterload_null                       0x08002843   Thumb Code     2  handlers.o(i.__scatterload_null)
+    __scatterload_zeroinit                   0x08002845   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
+    year_code                                0x08002a0c   Data         597  bsp_calendar.o(.constdata)
+    YearMonthBit                             0x08002c61   Data         153  bsp_calendar.o(.constdata)
+    days                                     0x08002cfa   Data          24  bsp_calendar.o(.constdata)
+    day_code1                                0x08002d12   Data           9  bsp_calendar.o(.constdata)
+    day_code2                                0x08002d1c   Data           6  bsp_calendar.o(.constdata)
+    table_week                               0x08002d22   Data          12  bsp_calendar.o(.constdata)
+    __ctype_categories                       0x08002d6c   Data          64  ctype_c.o(.constdata)
+    Region$$Table$$Base                      0x080031b0   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x080031d0   Number         0  anon$$obj.o(Region$$Table)
     SystemCoreClock                          0x20000000   Data           4  system_stm32f10x.o(.data)
     AHBPrescTable                            0x20000004   Data          16  system_stm32f10x.o(.data)
-    systmtime                                0x20000028   Data          28  main.o(.data)
-    clocktime                                0x20000044   Data          28  main.o(.data)
-    JieQiStr                                 0x20000060   Data          96  bsp_calendar.o(.data)
-    sky                                      0x200000c0   Data          40  bsp_calendar.o(.data)
-    earth                                    0x200000e8   Data          48  bsp_calendar.o(.data)
-    monthcode                                0x20000118   Data          48  bsp_calendar.o(.data)
-    nongliday                                0x20000148   Data          16  bsp_calendar.o(.data)
-    TimeDisplay                              0x20000188   Data           4  bsp_rtc.o(.data)
-    TimeAlarm                                0x2000018c   Data           4  bsp_rtc.o(.data)
-    WEEK_STR                                 0x20000190   Data          28  bsp_rtc.o(.data)
-    zodiac_sign                              0x200001ac   Data          48  bsp_rtc.o(.data)
-    en_WEEK_STR                              0x200001dc   Data          28  bsp_rtc.o(.data)
-    en_zodiac_sign                           0x200001f8   Data          48  bsp_rtc.o(.data)
-    __stdin                                  0x2000022c   Data           4  stdin.o(.data)
-    __stdout                                 0x20000230   Data           4  stdout.o(.data)
-    __initial_sp                             0x20000638   Data           0  startup_stm32f10x_hd.o(STACK)
+    timeup                                   0x20000028   Data           4  main.o(.data)
+    JieQiStr                                 0x2000002c   Data          96  bsp_calendar.o(.data)
+    sky                                      0x2000008c   Data          40  bsp_calendar.o(.data)
+    earth                                    0x200000b4   Data          48  bsp_calendar.o(.data)
+    monthcode                                0x200000e4   Data          48  bsp_calendar.o(.data)
+    nongliday                                0x20000114   Data          16  bsp_calendar.o(.data)
+    TimeDisplay                              0x20000154   Data           4  bsp_rtc.o(.data)
+    timecnt                                  0x20000158   Data           4  bsp_rtc.o(.data)
+    TimeAlarm                                0x2000015c   Data           4  bsp_rtc.o(.data)
+    WEEK_STR                                 0x20000160   Data          28  bsp_rtc.o(.data)
+    zodiac_sign                              0x2000017c   Data          48  bsp_rtc.o(.data)
+    en_WEEK_STR                              0x200001ac   Data          28  bsp_rtc.o(.data)
+    en_zodiac_sign                           0x200001c8   Data          48  bsp_rtc.o(.data)
+    __stdin                                  0x200001fc   Data           4  stdin.o(.data)
+    __stdout                                 0x20000200   Data           4  stdout.o(.data)
+    __initial_sp                             0x20000608   Data           0  startup_stm32f10x_hd.o(STACK)
 
 
 
@@ -890,22 +890,22 @@ Memory Map of the image
 
   Image Entry point : 0x08000131
 
-  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x000034a4, Max: 0x00040000, ABSOLUTE, COMPRESSED[0x000033b4])
+  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x000033d8, Max: 0x00040000, ABSOLUTE, COMPRESSED[0x00003310])
 
-    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x0000326c, Max: 0x00040000, ABSOLUTE)
+    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x000031d0, Max: 0x00040000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
     0x08000000   0x08000000   0x00000130   Data   RO            3    RESET               startup_stm32f10x_hd.o
-    0x08000130   0x08000130   0x00000000   Code   RO          541  * .ARM.Collect$$$$00000000  mc_w.l(entry.o)
-    0x08000130   0x08000130   0x00000004   Code   RO          813    .ARM.Collect$$$$00000001  mc_w.l(entry2.o)
-    0x08000134   0x08000134   0x00000004   Code   RO          816    .ARM.Collect$$$$00000004  mc_w.l(entry5.o)
-    0x08000138   0x08000138   0x00000000   Code   RO          818    .ARM.Collect$$$$00000008  mc_w.l(entry7b.o)
-    0x08000138   0x08000138   0x00000000   Code   RO          820    .ARM.Collect$$$$0000000A  mc_w.l(entry8b.o)
-    0x08000138   0x08000138   0x00000008   Code   RO          821    .ARM.Collect$$$$0000000B  mc_w.l(entry9a.o)
-    0x08000140   0x08000140   0x00000000   Code   RO          823    .ARM.Collect$$$$0000000D  mc_w.l(entry10a.o)
-    0x08000140   0x08000140   0x00000000   Code   RO          825    .ARM.Collect$$$$0000000F  mc_w.l(entry11a.o)
-    0x08000140   0x08000140   0x00000004   Code   RO          814    .ARM.Collect$$$$00002712  mc_w.l(entry2.o)
+    0x08000130   0x08000130   0x00000000   Code   RO          545  * .ARM.Collect$$$$00000000  mc_w.l(entry.o)
+    0x08000130   0x08000130   0x00000004   Code   RO          817    .ARM.Collect$$$$00000001  mc_w.l(entry2.o)
+    0x08000134   0x08000134   0x00000004   Code   RO          820    .ARM.Collect$$$$00000004  mc_w.l(entry5.o)
+    0x08000138   0x08000138   0x00000000   Code   RO          822    .ARM.Collect$$$$00000008  mc_w.l(entry7b.o)
+    0x08000138   0x08000138   0x00000000   Code   RO          824    .ARM.Collect$$$$0000000A  mc_w.l(entry8b.o)
+    0x08000138   0x08000138   0x00000008   Code   RO          825    .ARM.Collect$$$$0000000B  mc_w.l(entry9a.o)
+    0x08000140   0x08000140   0x00000000   Code   RO          827    .ARM.Collect$$$$0000000D  mc_w.l(entry10a.o)
+    0x08000140   0x08000140   0x00000000   Code   RO          829    .ARM.Collect$$$$0000000F  mc_w.l(entry11a.o)
+    0x08000140   0x08000140   0x00000004   Code   RO          818    .ARM.Collect$$$$00002712  mc_w.l(entry2.o)
     0x08000144   0x08000144   0x00000024   Code   RO            4    .text               startup_stm32f10x_hd.o
     0x08000168   0x08000168   0x000001e0   Code   RO           24    .text               system_stm32f10x.o
     0x08000348   0x08000348   0x000000dc   Code   RO          121    .text               misc.o
@@ -915,63 +915,63 @@ Memory Map of the image
     0x08000910   0x08000910   0x000003a4   Code   RO          317    .text               stm32f10x_rcc.o
     0x08000cb4   0x08000cb4   0x00000148   Code   RO          331    .text               stm32f10x_rtc.o
     0x08000dfc   0x08000dfc   0x00000408   Code   RO          379    .text               stm32f10x_usart.o
-    0x08001204   0x08001204   0x000000b0   Code   RO          403    .text               main.o
-    0x080012b4   0x080012b4   0x00000054   Code   RO          441    .text               stm32f10x_it.o
-    0x08001308   0x08001308   0x00000684   Code   RO          457    .text               bsp_calendar.o
-    0x0800198c   0x0800198c   0x000001dc   Code   RO          474    .text               bsp_date.o
-    0x08001b68   0x08001b68   0x000005d4   Code   RO          489    .text               bsp_rtc.o
-    0x0800213c   0x0800213c   0x000000bc   Code   RO          505    .text               bsp_usart.o
-    0x080021f8   0x080021f8   0x00000068   Code   RO          517    .text               bsp_key.o
-    0x08002260   0x08002260   0x00000034   Code   RO          529    .text               bsp_beep.o
-    0x08002294   0x08002294   0x00000024   Code   RO          544    .text               mc_w.l(memcpya.o)
-    0x080022b8   0x080022b8   0x00000020   Code   RO          809    .text               mc_w.l(__0scanf.o)
-    0x080022d8   0x080022d8   0x0000014c   Code   RO          811    .text               mc_w.l(_scanf_int.o)
-    0x08002424   0x08002424   0x0000002c   Code   RO          829    .text               mc_w.l(uidiv.o)
-    0x08002450   0x08002450   0x0000001c   Code   RO          833    .text               mc_w.l(_chval.o)
-    0x0800246c   0x0800246c   0x00000014   Code   RO          835    .text               mc_w.l(scanf_char_file.o)
-    0x08002480   0x08002480   0x00000024   Code   RO          848    .text               mc_w.l(init.o)
-    0x080024a4   0x080024a4   0x0000002c   Code   RO          850    .text               mc_w.l(fgetc_b.o)
-    0x080024d0   0x080024d0   0x00000028   Code   RO          859    .text               mc_w.l(scanf_char.o)
-    0x080024f8   0x080024f8   0x00000000   Code   RO          863    .text               mc_w.l(semi.o)
-    0x080024f8   0x080024f8   0x0000000a   Code   RO          864    .text               mc_w.l(isspace_c.o)
-    0x08002502   0x08002502   0x00000002   PAD
-    0x08002504   0x08002504   0x0000032c   Code   RO          866    .text               mc_w.l(_scanf.o)
-    0x08002830   0x08002830   0x00000000   Code   RO          868    .text               mc_w.l(iusesemig.o)
-    0x08002830   0x08002830   0x00000028   Code   RO          869    .text               mc_w.l(ctype_c.o)
-    0x08002858   0x08002858   0x00000056   Code   RO          880    .text               mc_w.l(__dczerorl2.o)
-    0x080028ae   0x080028ae   0x00000002   PAD
-    0x080028b0   0x080028b0   0x00000020   Code   RO          637    i.__0printf$3       mc_w.l(printf3.o)
-    0x080028d0   0x080028d0   0x0000000e   Code   RO          874    i.__scatterload_copy  mc_w.l(handlers.o)
-    0x080028de   0x080028de   0x00000002   Code   RO          875    i.__scatterload_null  mc_w.l(handlers.o)
-    0x080028e0   0x080028e0   0x0000000e   Code   RO          876    i.__scatterload_zeroinit  mc_w.l(handlers.o)
-    0x080028ee   0x080028ee   0x00000002   PAD
-    0x080028f0   0x080028f0   0x000001b8   Code   RO          644    i._printf_core      mc_w.l(printf3.o)
-    0x08002aa8   0x08002aa8   0x0000032e   Data   RO          458    .constdata          bsp_calendar.o
-    0x08002dd6   0x08002dd6   0x00000002   PAD
-    0x08002dd8   0x08002dd8   0x00000030   Data   RO          475    .constdata          bsp_date.o
-    0x08002e08   0x08002e08   0x00000040   Data   RO          870    .constdata          mc_w.l(ctype_c.o)
-    0x08002e48   0x08002e48   0x0000014f   Data   RO          459    .conststring        bsp_calendar.o
-    0x08002f97   0x08002f97   0x00000001   PAD
-    0x08002f98   0x08002f98   0x000002b3   Data   RO          490    .conststring        bsp_rtc.o
-    0x0800324b   0x0800324b   0x00000001   PAD
-    0x0800324c   0x0800324c   0x00000020   Data   RO          872    Region$$Table       anon$$obj.o
+    0x08001204   0x08001204   0x000000fc   Code   RO          403    .text               main.o
+    0x08001300   0x08001300   0x00000060   Code   RO          442    .text               stm32f10x_it.o
+    0x08001360   0x08001360   0x00000684   Code   RO          458    .text               bsp_calendar.o
+    0x080019e4   0x080019e4   0x000001dc   Code   RO          475    .text               bsp_date.o
+    0x08001bc0   0x08001bc0   0x000004e0   Code   RO          490    .text               bsp_rtc.o
+    0x080020a0   0x080020a0   0x000000bc   Code   RO          509    .text               bsp_usart.o
+    0x0800215c   0x0800215c   0x00000068   Code   RO          521    .text               bsp_key.o
+    0x080021c4   0x080021c4   0x00000034   Code   RO          533    .text               bsp_beep.o
+    0x080021f8   0x080021f8   0x00000024   Code   RO          548    .text               mc_w.l(memcpya.o)
+    0x0800221c   0x0800221c   0x00000020   Code   RO          813    .text               mc_w.l(__0scanf.o)
+    0x0800223c   0x0800223c   0x0000014c   Code   RO          815    .text               mc_w.l(_scanf_int.o)
+    0x08002388   0x08002388   0x0000002c   Code   RO          833    .text               mc_w.l(uidiv.o)
+    0x080023b4   0x080023b4   0x0000001c   Code   RO          837    .text               mc_w.l(_chval.o)
+    0x080023d0   0x080023d0   0x00000014   Code   RO          839    .text               mc_w.l(scanf_char_file.o)
+    0x080023e4   0x080023e4   0x00000024   Code   RO          852    .text               mc_w.l(init.o)
+    0x08002408   0x08002408   0x0000002c   Code   RO          854    .text               mc_w.l(fgetc_b.o)
+    0x08002434   0x08002434   0x00000028   Code   RO          863    .text               mc_w.l(scanf_char.o)
+    0x0800245c   0x0800245c   0x00000000   Code   RO          867    .text               mc_w.l(semi.o)
+    0x0800245c   0x0800245c   0x0000000a   Code   RO          868    .text               mc_w.l(isspace_c.o)
+    0x08002466   0x08002466   0x00000002   PAD
+    0x08002468   0x08002468   0x0000032c   Code   RO          870    .text               mc_w.l(_scanf.o)
+    0x08002794   0x08002794   0x00000000   Code   RO          872    .text               mc_w.l(iusesemig.o)
+    0x08002794   0x08002794   0x00000028   Code   RO          873    .text               mc_w.l(ctype_c.o)
+    0x080027bc   0x080027bc   0x00000056   Code   RO          884    .text               mc_w.l(__dczerorl2.o)
+    0x08002812   0x08002812   0x00000002   PAD
+    0x08002814   0x08002814   0x00000020   Code   RO          641    i.__0printf$3       mc_w.l(printf3.o)
+    0x08002834   0x08002834   0x0000000e   Code   RO          878    i.__scatterload_copy  mc_w.l(handlers.o)
+    0x08002842   0x08002842   0x00000002   Code   RO          879    i.__scatterload_null  mc_w.l(handlers.o)
+    0x08002844   0x08002844   0x0000000e   Code   RO          880    i.__scatterload_zeroinit  mc_w.l(handlers.o)
+    0x08002852   0x08002852   0x00000002   PAD
+    0x08002854   0x08002854   0x000001b8   Code   RO          648    i._printf_core      mc_w.l(printf3.o)
+    0x08002a0c   0x08002a0c   0x0000032e   Data   RO          459    .constdata          bsp_calendar.o
+    0x08002d3a   0x08002d3a   0x00000002   PAD
+    0x08002d3c   0x08002d3c   0x00000030   Data   RO          476    .constdata          bsp_date.o
+    0x08002d6c   0x08002d6c   0x00000040   Data   RO          874    .constdata          mc_w.l(ctype_c.o)
+    0x08002dac   0x08002dac   0x0000014f   Data   RO          460    .conststring        bsp_calendar.o
+    0x08002efb   0x08002efb   0x00000001   PAD
+    0x08002efc   0x08002efc   0x000002b3   Data   RO          491    .conststring        bsp_rtc.o
+    0x080031af   0x080031af   0x00000001   PAD
+    0x080031b0   0x080031b0   0x00000020   Data   RO          876    Region$$Table       anon$$obj.o
 
 
-    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x0800326c, Size: 0x00000638, Max: 0x0000c000, ABSOLUTE, COMPRESSED[0x00000148])
+    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x080031d0, Size: 0x00000608, Max: 0x0000c000, ABSOLUTE, COMPRESSED[0x00000140])
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
     0x20000000   COMPRESSED   0x00000014   Data   RW           25    .data               system_stm32f10x.o
     0x20000014   COMPRESSED   0x00000014   Data   RW          318    .data               stm32f10x_rcc.o
-    0x20000028   COMPRESSED   0x00000038   Data   RW          404    .data               main.o
-    0x20000060   COMPRESSED   0x000000f8   Data   RW          460    .data               bsp_calendar.o
-    0x20000158   COMPRESSED   0x00000030   Data   RW          476    .data               bsp_date.o
-    0x20000188   COMPRESSED   0x000000a4   Data   RW          491    .data               bsp_rtc.o
-    0x2000022c   COMPRESSED   0x00000004   Data   RW          827    .data               mc_w.l(stdin.o)
-    0x20000230   COMPRESSED   0x00000004   Data   RW          828    .data               mc_w.l(stdout.o)
-    0x20000234   COMPRESSED   0x00000003   Data   RW          851    .data               mc_w.l(fgetc_b.o)
-    0x20000237   COMPRESSED   0x00000001   PAD
-    0x20000238        -       0x00000400   Zero   RW            1    STACK               startup_stm32f10x_hd.o
+    0x20000028   COMPRESSED   0x00000004   Data   RW          404    .data               main.o
+    0x2000002c   COMPRESSED   0x000000f8   Data   RW          461    .data               bsp_calendar.o
+    0x20000124   COMPRESSED   0x00000030   Data   RW          477    .data               bsp_date.o
+    0x20000154   COMPRESSED   0x000000a8   Data   RW          492    .data               bsp_rtc.o
+    0x200001fc   COMPRESSED   0x00000004   Data   RW          831    .data               mc_w.l(stdin.o)
+    0x20000200   COMPRESSED   0x00000004   Data   RW          832    .data               mc_w.l(stdout.o)
+    0x20000204   COMPRESSED   0x00000003   Data   RW          855    .data               mc_w.l(fgetc_b.o)
+    0x20000207   COMPRESSED   0x00000001   PAD
+    0x20000208        -       0x00000400   Zero   RW            1    STACK               startup_stm32f10x_hd.o
 
 
 ==============================================================================
@@ -981,27 +981,27 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
-        52          6          0          0          0        559   bsp_beep.o
-      1668        102       1149        248          0       5255   bsp_calendar.o
-       476         16         48         48          0       2077   bsp_date.o
-       104         10          0          0          0       1179   bsp_key.o
-      1492        516        691        164          0       3212   bsp_rtc.o
-       188         10          0          0          0       1067   bsp_usart.o
+        52          6          0          0          0        547   bsp_beep.o
+      1668        102       1149        248          0       5215   bsp_calendar.o
+       476         16         48         48          0       2041   bsp_date.o
+       104         10          0          0          0       1147   bsp_key.o
+      1248        354        691        168          0       3100   bsp_rtc.o
+       188         10          0          0          0       1055   bsp_usart.o
          0          0          0          0          0       4500   core_cm3.o
-       176         24          0         56          0       2753   main.o
-       220         22          0          0          0       1917   misc.o
-        36          8        304          0       1024        912   startup_stm32f10x_hd.o
-       196          8          0          0          0       3616   stm32f10x_bkp.o
-       860         38          0          0          0       5845   stm32f10x_gpio.o
-        84         10          0          0          0       1469   stm32f10x_it.o
-       204         14          0          0          0       2007   stm32f10x_pwr.o
-       932         36          0         20          0       9076   stm32f10x_rcc.o
-       328          4          0          0          0       2782   stm32f10x_rtc.o
-      1032         22          0          0          0       8576   stm32f10x_usart.o
-       480         38          0         20          0     230315   system_stm32f10x.o
+       252         84          0          4          0       2516   main.o
+       220         22          0          0          0       1889   misc.o
+        36          8        304          0       1024        900   startup_stm32f10x_hd.o
+       196          8          0          0          0       3588   stm32f10x_bkp.o
+       860         38          0          0          0       5817   stm32f10x_gpio.o
+        96         12          0          0          0       1465   stm32f10x_it.o
+       204         14          0          0          0       1991   stm32f10x_pwr.o
+       932         36          0         20          0       9036   stm32f10x_rcc.o
+       328          4          0          0          0       2766   stm32f10x_rtc.o
+      1032         22          0          0          0       8548   stm32f10x_usart.o
+       480         38          0         20          0     230195   system_stm32f10x.o
 
     ----------------------------------------------------------------------
-      8528        884       2228        556       1024     287117   Object Totals
+      8372        784       2228        508       1024     286316   Object Totals
          0          0         32          0          0          0   (incl. Generated)
          0          0          4          0          0          0   (incl. Padding)
 
@@ -1057,15 +1057,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-     10616        952       2292        568       1024     286461   Grand Totals
-     10616        952       2292        328       1024     286461   ELF Image Totals (compressed)
-     10616        952       2292        328          0          0   ROM Totals
+     10460        852       2292        520       1024     285660   Grand Totals
+     10460        852       2292        320       1024     285660   ELF Image Totals (compressed)
+     10460        852       2292        320          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                12908 (  12.61kB)
-    Total RW  Size (RW Data + ZI Data)              1592 (   1.55kB)
-    Total ROM Size (Code + RO Data + RW Data)      13236 (  12.93kB)
+    Total RO  Size (Code + RO Data)                12752 (  12.45kB)
+    Total RW  Size (RW Data + ZI Data)              1544 (   1.51kB)
+    Total ROM Size (Code + RO Data + RW Data)      13072 (  12.77kB)
 
 ==============================================================================
 

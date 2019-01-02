@@ -20,6 +20,7 @@
 
 /* 秒中断标志，进入秒中断时置1，当时间被刷新之后清0 */
 __IO uint32_t TimeDisplay = 0;
+__IO uint32_t timecnt = 0;
 
 /*闹钟响铃标志，在中断中闹钟事件致1*/
 __IO uint32_t TimeAlarm = 0;
@@ -63,23 +64,9 @@ void RTC_NVIC_Config(void)
  * 输出  ：无
  * 调用  ：外部调用
  */
-void RTC_CheckAndConfig(struct rtc_time *tm)
+void RTC_CheckAndConfig()
 {
-   	/*在启动时检查备份寄存器BKP_DR1，如果内容不是0xA5A5,
-	  则需重新配置时间并询问用户调整时间*/
-	if (BKP_ReadBackupRegister(RTC_BKP_DRX) != RTC_BKP_DATA)
-	{
-		printf("\r\n\r\n RTC not yet configured....");
-		printf("\r\n\r\n RTC configured....");
 
-		/* 使用tm的时间配置RTC寄存器 */
-		Time_Adjust(tm);
-		
-		/*向BKP_DR1寄存器写入标志，说明RTC已在运行*/
-		BKP_WriteBackupRegister(RTC_BKP_DRX, RTC_BKP_DATA);
-	}
-	else
-	{
 		
 		/* 使能 PWR 和 Backup 时钟 */
 	  RCC_APB1PeriphClockCmd(RCC_APB1Periph_PWR | RCC_APB1Periph_BKP, ENABLE);
@@ -97,19 +84,6 @@ void RTC_CheckAndConfig(struct rtc_time *tm)
 			while (RCC_GetFlagStatus(RCC_FLAG_LSIRDY) == RESET)
 			{}
 #endif
-
-		/*检查是否掉电重启*/
-		if (RCC_GetFlagStatus(RCC_FLAG_PORRST) != RESET)
-		{
-		    printf("\r\n\r\n Power On Reset occurred....");
-		}
-		/*检查是否Reset复位*/
-		else if (RCC_GetFlagStatus(RCC_FLAG_PINRST) != RESET)
-		{
-			printf("\r\n\r\n External Reset occurred....");
-		}
-	
-		printf("\r\n No need to configure RTC....");
 		
 		/*等待寄存器同步*/
 		RTC_WaitForSynchro();
@@ -119,17 +93,6 @@ void RTC_CheckAndConfig(struct rtc_time *tm)
 		
 		/*等待上次RTC寄存器写操作完成*/
 		RTC_WaitForLastTask();
-	}
-	   /*定义了时钟输出宏，则配置校正时钟输出到PC13*/
-	#ifdef RTCClockOutput_Enable
-	
-	  /* 禁止 Tamper 引脚 */
-	  /* 要输出 RTCCLK/64 到 Tamper 引脚,  tamper 功能必须禁止 */	
-	  BKP_TamperPinCmd(DISABLE); 
-	
-	  /* 使能 RTC 时钟输出到 Tamper 引脚 */
-	  BKP_RTCOutputConfig(BKP_RTCOutputSource_CalibClock);
-	#endif
 	
 	  /* 清除复位标志 flags */
 	  RCC_ClearFlag();
