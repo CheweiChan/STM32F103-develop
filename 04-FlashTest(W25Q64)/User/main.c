@@ -1,16 +1,14 @@
  /**
   ******************************************************************************
   * @file    main.c
-  * @author  fire
+  * @author  
   * @version V1.0
-  * @date    2013-xx-xx
-  * @brief   华邦 8M串行flash测试，并将测试信息通过串口1在电脑的超级终端中打印出来
+  * @date    2018-12-10
+  * @brief   winboard W25Q64 8M flash test,print result to uart
   ******************************************************************************
   * @attention
   *
   * 实验平台:秉火 F103-MINI STM32 开发板 
-  * 论坛    :http://www.firebbs.cn
-  * 淘宝    :https://fire-stm32.taobao.com
   *
   ******************************************************************************
   */ 
@@ -35,7 +33,7 @@ typedef enum { FAILED = 0, PASSED = !FAILED} TestStatus;
      
 
 /* 发送缓冲区初始化 */
-uint8_t Tx_Buffer[] = "感谢您选用秉火stm32开发板\r\n";
+uint8_t Tx_Buffer[] = "Hello_word_20181210\r\n";
 uint8_t Rx_Buffer[BufferSize];
 
 __IO uint32_t DeviceID = 0;
