@@ -1,16 +1,13 @@
 /**
   ******************************************************************************
   * @file    main.c
-  * @author  fire
+  * @author  
   * @version V1.0
-  * @date    2013-xx-xx
-  * @brief   rtc ²âÊÔ£¬ÏÔÊ¾Ê±¼ä¸ñÊ½Îª: xx:xx:xx
+  * @date    20181210
+  * @brief   rtc æµ‹è¯•ï¼Œæ˜¾ç¤ºæ—¶é—´æ ¼å¼ä¸º: xx:xx:xx
   ******************************************************************************
   * @attention
-  *
-  * ÊµÑéÆ½Ì¨:±ü»ğ F103-MINI STM32 ¿ª·¢°å 
-  * ÂÛÌ³    :http://www.firebbs.cn
-  * ÌÔ±¦    :https://fire-stm32.taobao.com
+  * å®éªŒå¹³å°:ç§‰ç« F103-MINI STM32 å¼€å‘æ¿ 
   *
   ******************************************************************************
   */
@@ -22,15 +19,15 @@
 #include "./beep/bsp_beep.h"   
 
 
-// N = 2^32/365/24/60/60 = 136 Äê
+// N = 2^32/365/24/60/60 = 136 å¹´
 
 extern __IO uint32_t TimeDisplay ;
 extern __IO uint32_t TimeAlarm ;
 uint32_t timeup=120;
 /*
-  * @brief  Ö÷º¯Êı
-  * @param  ÎŞ  
-  * @retval ÎŞ
+  * @brief  ä¸»å‡½æ•°
+  * @param  æ—   
+  * @retval æ— 
 */
 int main()
 {		
@@ -40,23 +37,23 @@ int main()
 	
 	BEEP_GPIO_Config();
 		
-/* ÅäÖÃRTCÃëÖĞ¶ÏÓÅÏÈ¼¶ */
+/* é…ç½®RTCç§’ä¸­æ–­ä¼˜å…ˆçº§ */
 	RTC_NVIC_Config();
 	RTC_CheckAndConfig();
 		
 	  while (1)
 	  {
-	    /* Ã¿¹ı1s ¸üĞÂÒ»´ÎÊ±¼ä*/
+	    /* æ¯è¿‡1s æ›´æ–°ä¸€æ¬¡æ—¶é—´*/
 	    if (TimeDisplay == 1)
 	    {
-   		    /* µ±Ç°Ê±¼ä */
+   		    /* å½“å‰æ—¶é—´ */
 	        TimeDisplay = 0;
             printf("timeup=%d,time=%d:%d\n",timeup,timecnt/60,timecnt%60);
             if(timeup==timecnt) TimeAlarm=1;
                 
 	    }
 			
-			//°´ÏÂ°´¼ü£¬Í¨¹ı´®¿ÚĞŞ¸ÄÊ±¼ä
+			//æŒ‰ä¸‹æŒ‰é”®ï¼Œé€šè¿‡ä¸²å£ä¿®æ”¹æ—¶é—´
 			if( Key_Scan(KEY1_GPIO_PORT,KEY1_GPIO_PIN) == KEY_ON  )
 			{
 				printf("please press AlarmTime(sec)\n");
@@ -64,13 +61,13 @@ int main()
                 timecnt=0;
 			} 	
 			
-			//ÏìÁå
+			//å“é“ƒ
 			if( TimeAlarm == 1)
 			{
 				BEEP(ON);
 			}
 
-			//°´ÏÂ°´¼ü£¬¹Ø±Õ·äÃùÆ÷
+			//æŒ‰ä¸‹æŒ‰é”®ï¼Œå…³é—­èœ‚é¸£å™¨
 			if( Key_Scan(KEY2_GPIO_PORT,KEY2_GPIO_PIN) == KEY_ON  )
 			{
 				BEEP(OFF);
