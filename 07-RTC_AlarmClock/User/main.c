@@ -1,25 +1,9 @@
-/**
-  ******************************************************************************
-  * @file    main.c
-  * @author  
-  * @version V1.0
-  * @date    20181210
-  * @brief   rtc 测试，显示时间格式为: xx:xx:xx
-  ******************************************************************************
-  * @attention
-  * 实验平台:秉火 F103-MINI STM32 开发板 
-  *
-  ******************************************************************************
-  */
-	
+﻿
 #include "stm32f10x.h"
 #include "./usart/bsp_usart.h"
 #include "./rtc/bsp_rtc.h"
 #include "./key/bsp_key.h"  
 #include "./beep/bsp_beep.h"   
-
-
-// N = 2^32/365/24/60/60 = 136 年
 
 extern __IO uint32_t TimeDisplay ;
 extern __IO uint32_t TimeAlarm ;
