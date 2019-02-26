@@ -1,4 +1,4 @@
-﻿
+
 #include "stm32f10x.h"
 #include "./usart/bsp_usart.h"
 #include "./rtc/bsp_rtc.h"
@@ -9,9 +9,9 @@ extern __IO uint32_t TimeDisplay ;
 extern __IO uint32_t TimeAlarm ;
 uint32_t timeup=120;
 /*
-  * @brief  主函数
-  * @param  无  
-  * @retval 无
+  * @brief  主函�?
+  * @param  �? 
+  * @retval �?
 */
 int main()
 {		
@@ -24,10 +24,9 @@ int main()
 /* 配置RTC秒中断优先级 */
 	RTC_NVIC_Config();
 	RTC_CheckAndConfig();
-		
 	  while (1)
 	  {
-	    /* 每过1s 更新一次时间*/
+	    /* 每过1s 更新一次时�?/
 	    if (TimeDisplay == 1)
 	    {
    		    /* 当前时间 */
