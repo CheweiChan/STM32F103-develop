@@ -1,26 +1,25 @@
-ï»¿/
- 
 #include "stm32f10x.h"
 #include "bsp_usart.h"
 
-
+void USART2_printf( USART_TypeDef* USARTx, char *Data, ... ); 
 /**
-  * @brief  ä¸»å‡½æ•°
-  * @param  æ— 
-  * @retval æ— 
+  * @brief  Ö÷º¯Êı
+  * @param  ÎŞ
+  * @retval ÎŞ
   */
 int main(void)
 {	
-  /*åˆå§‹åŒ–USART é…ç½®æ¨¡å¼ä¸º 115200 8-N-1ï¼Œä¸­æ–­æ¥æ”¶*/
-  USART_Config();
+  /*³õÊ¼»¯USART ÅäÖÃÄ£Ê½Îª 115200 8-N-1£¬ÖĞ¶Ï½ÓÊÕ*/
+    USART_Config();
+	USART2_Config();
+	/* ·¢ËÍÒ»¸ö×Ö·û´® */
+	USART2_printf(USART2,"\nuart2");
+	USART2_printf(USART1,"\nuart1");
+	printf("\nUART TEST");
+
+
 	
-	/* å‘é€ä¸€ä¸ªå­—ç¬¦ä¸² */
-	Usart_SendString( DEBUG_USARTx,"è¿™æ˜¯ä¸€ä¸ªä¸²å£ä¸­æ–­æ¥æ”¶å›æ˜¾å®éªŒ\n");
-	printf("æ¬¢è¿ä½¿ç”¨ç§‰ç«STM32å¼€å‘æ¿\n\n\n\n");
-	
-  while(1)
-	{	
-		
-	}	
+  while(1);
+
 }
 /*********************************************END OF FILE**********************/

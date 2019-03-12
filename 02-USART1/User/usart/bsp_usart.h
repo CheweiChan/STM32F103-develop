@@ -108,5 +108,6 @@ void USART_Config(void);
 void Usart_SendByte( USART_TypeDef * pUSARTx, uint8_t ch);
 void Usart_SendString( USART_TypeDef * pUSARTx, char *str);
 void Usart_SendHalfWord( USART_TypeDef * pUSARTx, uint16_t ch);
+void USART2_Config( void );
 
 #endif /* __USART_H */
