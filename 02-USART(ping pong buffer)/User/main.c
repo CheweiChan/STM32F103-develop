@@ -14,14 +14,12 @@ int main(void)
 {	
 
     USART_Config();
-	USART2_Config();
-	/* ·¢ËÍÒ»¸ö×Ö·û´® */
-	USART2_printf(USART2,"\nuart2");
-	USART2_printf(USART1,"\nuart1");
+    USART2_Config();
+    USART2_printf(USART2,"\nuart2");
+    USART2_printf(USART1,"\nuart1");
 
-	rx_queue_init();
-	
-	printf("\nuart rx_tx test (receive use ping pong buffer)\n\n");
+    rx_queue_init();
+    printf("\nuart rx_tx test (receive use ping pong buffer)\n\n");
 
   while(1)
 	{	
