@@ -23,7 +23,7 @@ int main(void)
 
   while(1)
 	{	
-	    Delay(0xffffff);//delay for test buffer is work
+	    Delay(0xffffff);//delay for test ping pong buffer
 
 		pull_data_from_queue();
 	}	
