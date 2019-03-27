@@ -2,13 +2,13 @@
 #include "./usart/rx_data_queue.h"
 
 
-
-
+/*buffer head*/
 QUEUE_DATA_TYPE  node_data[QUEUE_NODE_NUM]; 
 
+/*struct of queue*/
 QueueBuffer rx_queue;
 
-
+/*data buffer*/
 __align(4) char node_buff[QUEUE_NODE_NUM][QUEUE_NODE_DATA_LEN] ;
 
 
@@ -73,7 +73,7 @@ QUEUE_DATA_TYPE* cbWrite(QueueBuffer *cb)
 			//it mean that previous buffer has been write,write_using add 1
 			if(cb->write == cb->write_using)
 			{
-				cb->write_using = cbIncr(cb, cb->write); //Î´Âú£¬ÔòÔö¼Ó1
+				cb->write_using = cbIncr(cb, cb->write); //ÃŽÂ´Ã‚ÃºÂ£Â¬Ã”Ã²Ã”Ã¶Â¼Ã“1
 			}
 		}
 		
@@ -193,11 +193,8 @@ void push_data_to_queue(char *src_dat,uint16_t src_len)
 			printf("\r\ndata_p->len =%d",data_p->len);
 		}else return;	
 		
-	}	
-	
+	}		
 	cbWriteFinish(&rx_queue);
-	
-
 }
 
 
@@ -206,20 +203,19 @@ void push_data_to_queue(char *src_dat,uint16_t src_len)
   */
 void pull_data_from_queue(void)
 {
-	QUEUE_DATA_TYPE *rx_data;	
+    QUEUE_DATA_TYPE *rx_data;	
     uint8_t i=0;	
 
-	rx_data = cbRead(&rx_queue); 
+    rx_data = cbRead(&rx_queue); 
 	if(rx_data != NULL)
 	{		
-        while(i<rx_data->len)
+        	while(i<rx_data->len)
         {
             printf("%c",*(rx_data->head+i));
             i++;
         }
-        printf("\n");
+        	printf("\n");
 		cbReadFinish(&rx_queue);
-
 	}
 }
 
