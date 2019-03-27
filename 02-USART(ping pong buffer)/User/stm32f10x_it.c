@@ -144,8 +144,7 @@ void SysTick_Handler(void)
 
 
 
-// 串口中断服务函数
-// 把接收到的数据写入缓冲区，在main函数中轮询缓冲区输出数据
+//uart receive interrupt
 void DEBUG_USART_IRQHandler(void)
 {	
 	uint8_t ucCh;
@@ -155,13 +154,10 @@ void DEBUG_USART_IRQHandler(void)
 	{	
 		ucCh  = USART_ReceiveData( DEBUG_USARTx );
 		
-						/*获取写缓冲区指针，准备写入新数据*/
 		data_p = cbWrite(&rx_queue); 
 		
-		if (data_p != NULL)	//若缓冲队列未满，开始传输
+		if (data_p != NULL)	
 		{		
-
-			//往缓冲区写入数据，如使用串口接收、dma写入等方式
 			*(data_p->head + data_p->len) = ucCh;
 			if( ++data_p->len >= QUEUE_NODE_DATA_LEN)
 			{
@@ -170,11 +166,10 @@ void DEBUG_USART_IRQHandler(void)
 		}else return;	
 	}
 	
-	if ( USART_GetITStatus( DEBUG_USARTx, USART_IT_IDLE ) == SET )                                         //数据帧接收完毕
+	if ( USART_GetITStatus( DEBUG_USARTx, USART_IT_IDLE ) == SET )                                        
 	{
-			/*写入缓冲区完毕*/
-			cbWriteFinish(&rx_queue);
-		ucCh = USART_ReceiveData( DEBUG_USARTx );                                                              //由软件序列清除中断标志位(先读USART_SR，然后读USART_DR)
+		cbWriteFinish(&rx_queue);
+		ucCh = USART_ReceiveData( DEBUG_USARTx );                                                             
 
 	}
 }
